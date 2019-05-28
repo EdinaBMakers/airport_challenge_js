@@ -1,5 +1,14 @@
 'use strict';
 
-function Airport() {};
+function Airport(weather) {
+  this.planes = [];
+  this._weather = weather;
+}
 
-Airport.prototype.planes = function() { return []; };
+Airport.prototype.land = function(plane) {
+  if (this._weather.isStormy()) {
+    throw new Error('Cannot land in stormy weather');
+  }
+
+  this.planes.push(plane);
+};
